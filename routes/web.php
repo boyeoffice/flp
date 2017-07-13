@@ -1,16 +1,27 @@
 <?php
+ Route::get('/', function() {
+ 	return view('welcome');
+ });
+/* Dashboard Index */
+Route::group(['prefix' => 'user', 'namespace' => 'Dashboard', 'middleware' => ['auth']], function () {
+   Route::get('{path?}', 'IndexController@index')->where('path', '[\/\w\.-]*');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+});
+Route::resource('api/backend/pages', 'Dashboard\PageController');
+Route::group(['prefix' => 'backend/v1'], function() {
+	Route::post('logout', 'HomeController@getLogout');
+});
+Route::post('signin', 'HomeController@postSignin')->name('login');
+ 
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/pages', 'HomeController@getPages');
+Route::get('/home/page/{id}/edit', 'HomeController@getPage');
+Route::post('/home/page/{id}', 'HomeController@updatePage');
+
+//API
+Route::group(['prefix' => 'api', 'namespace' => 'API'], function(){
+	Route::resource('/pages', 'PageController');
 });

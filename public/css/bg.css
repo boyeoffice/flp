@@ -1,0 +1,30 @@
+ body {
+            background: url(../img/bg.png);
+ }
+ .box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+ .box-trans {
+ 	background: rgba(0,0,0,0.35);
+ }
+ .box-header {
+    color: #fff;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
+.box-header > .box-tools {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+.form-control {
+	background: rgba(0,0,0,0.35);
+	color: #fff;
+}

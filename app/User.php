@@ -1,13 +1,16 @@
 <?php
 
-namespace App;
+namespace Boye;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
+use Boye\Support\FilterPaginateOrder;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
+    use FilterPaginateOrder;
 
     /**
      * The attributes that are mass assignable.
@@ -15,8 +18,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'username', 'email', 'password',
     ];
+    protected $filter = ['id', 'username', 'email', 'name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -26,4 +30,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function pages()
+    {
+        return $this->hasMany(Page::class);
+    }
 }

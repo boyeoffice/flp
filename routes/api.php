@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('v1/users', function(){
+	return response()->json([
+		'first_name' => 'Olakunle',
+	    'last_name' => 'Boye'
+		]);
+});
+Route::group(['prefix' => 'v1/boye/backend'], function(){
+	Route::get('statistics', 'HomeController@Statistics');
+});
