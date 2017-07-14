@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -30,10 +30,10 @@ class HomeController extends Controller
     {
         return view('index.pages');
     }
-    public function getPage($id)
+    public function getPage($slug)
     {
-        $page = Page::find($id);
-        return view('index.edit_page', ['page' => $page]);
+        $key = Page::where('slug',$slug)->first();
+        return view('page', ['key' => $key]);
     }
     public function updatePage(Request $request, $id)
     {

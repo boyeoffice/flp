@@ -9,7 +9,7 @@ const router = new VueRouter({
 	mode: 'history',
 	routes: [
 	{
-		path: '/user',
+		path: '/dashboard',
 		component: Dashboard,
 		children: [
 		{path: '/', component: require('./views/home/Index.vue')},

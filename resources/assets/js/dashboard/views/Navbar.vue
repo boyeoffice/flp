@@ -26,7 +26,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                    <li><img class="img img-circle" :src="'avatars/' + user.avatar" width="40" height="40"></li>
+                    <li><img class="img img-circle" :src="url + '/avatars/' + user.avatar" width="40" height="40"></li>
                      <li class="top-li">{{user.username}}</li>
                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><i class="glyphicon glyphicon-bell"></i></span></a> </li>
                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span><i class="glyphicon glyphicon-globe"></i></span> </a></li>
@@ -47,8 +47,8 @@
         </nav>
         <div class="container">
         <ul class="nav nav-pills nav-justified">
-              <li role="presentation" class="active"><router-link to="/user"><i class="glyphicon glyphicon-home"></i> Home</router-link></li>
-              <li role="presentation"><router-link to="/user/pages"><i class="glyphicon glyphicon-th-large"></i>  Pages</router-link>
+              <li role="presentation" class="active"><router-link to="/dashboard"><i class="glyphicon glyphicon-home"></i> Home</router-link></li>
+              <li role="presentation"><router-link to="/dashboard/pages"><i class="glyphicon glyphicon-th-large"></i>  Pages</router-link>
               </li>
               <li role="presentation"><a href="#">Messages</a></li>
               <li role="presentation" class="active"><a href="#">Home</a></li>
@@ -62,7 +62,8 @@
   export default {
           data(){
             return{
-             user: {}
+             user: {},
+             url: window.Url
             }
           },
          mounted(){

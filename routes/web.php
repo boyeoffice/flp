@@ -2,8 +2,9 @@
  Route::get('/', function() {
  	return view('welcome');
  });
+ Route::get('health/{slug}', 'HomeController@getPage');
 /* Dashboard Index */
-Route::group(['prefix' => 'user', 'namespace' => 'Dashboard', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => ['auth']], function () {
    Route::get('{path?}', 'IndexController@index')->where('path', '[\/\w\.-]*');
 
 });

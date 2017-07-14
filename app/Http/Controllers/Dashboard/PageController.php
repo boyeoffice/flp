@@ -80,7 +80,12 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page = Page::find($id);
+        $page->title = $request->input('title');
+        $page->content = $request->input('content');
+        $page->slug = str_slug($page->title);
+        $page->update();
+        return response()->json(['success' => 'true']);
     }
 
     /**
