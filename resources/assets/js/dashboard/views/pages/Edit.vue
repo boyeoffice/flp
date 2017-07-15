@@ -9,7 +9,7 @@
 							<input type="text" v-model="form.title" class="form-control">
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" v-model="form.content" rows="20"></textarea>
+							<froala :rows="300" :tag="'textarea'" :config="config" v-model="model"></froala>
 						</div>
 					</div>
 		    </section>
@@ -28,11 +28,20 @@
 	</section>
 </template>
 <script>
+import VueFroala from 'vue-froala-wysiwyg'
 	export default {
 		data(){
 			return{
 				content: '',
-	            form: []
+	            form: [],
+	            config: {
+				        events: {
+				          'froalaEditor.initialized': function () {
+				            console.log('initialized')
+				          }
+				        }
+				      },
+			      model: 'Edit Your Content Here!'
 			}
 		},
 		mounted(){
@@ -45,6 +54,7 @@
 				})
 			},
 			save(){
+				this.props.value = this.form.content
 				axios.put('/api/backend/pages/' + this.form.id, this.form).then(response => {
 					if(response.data.success){
 						window.location.reload('dashboard/pages')

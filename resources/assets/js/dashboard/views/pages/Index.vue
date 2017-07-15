@@ -13,7 +13,7 @@
 				    </div><!-- /input-group -->
 				  </div><!-- /.col-lg-6 -->
 				  </div>
-		   		<a href="#" class="btn btn-success btn-sm" v-if="!formPage" @click="getForm">Ceate</a></div>
+		   		<a href="#" class="btn btn-success btn-sm" v-if="!formPage" @click="getForm">Create</a></div>
 		   			</div>
 		   		<div class="box-body">
 		   			<table class="table table-bordered">

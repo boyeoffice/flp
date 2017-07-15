@@ -1,7 +1,11 @@
 <?php
  Route::get('/', function() {
- 	return view('welcome');
+ 	return view('welcome')->name('home');
  });
+ Route::post('upload_image', 'HomeController@uploadImage')->name('posts.upload_image');
+ /* Temporary Link */
+ Route::get('dashboard/edit_page/{id}/edit', 'HomeController@getEditPage');
+ Route::post('dashboard/edit_page/{id}', 'HomeController@postEditPage')->name('upload');
  Route::get('health/{slug}', 'HomeController@getPage');
 /* Dashboard Index */
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => ['auth']], function () {

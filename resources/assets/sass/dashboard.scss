@@ -178,3 +178,6 @@ a:active, a:focus {
     line-height: 90px;
     background: rgba(0,0,0,0.2);
 }
+.fr-box.fr-basic .fr-element {
+    min-height: 300px !important;
+}

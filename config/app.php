@@ -179,6 +179,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        //Petehouston\Tinymce\TinymceServiceProvider::class,
 
     ],
 
