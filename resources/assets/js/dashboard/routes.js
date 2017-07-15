@@ -20,7 +20,28 @@ const router = new VueRouter({
 			{path: '/', component: require('./views/pages/Index.vue')},
 			{path: ':id/edit', component: require('./views/pages/Edit.vue')}
 			]
-		}
+		},
+		{
+			path: 'posts',
+			component: Parent,
+			children: [
+			{path: '/', component: require('./views/posts/Index.vue')}
+			]
+		},
+		{
+			path: 'blog',
+			component: Parent,
+			children: [
+			{path: '/', component: require('./views/blog/Index.vue')}
+			]
+		},
+		{
+			path: 'profile',
+			component: Parent,
+			children: [
+			{path: '/', component: require('./views/profile/Index.vue')}
+			]
+		},
 		]
 	}
 	]

@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<section class="container">
+		<section v-if="!loading" class="container">
 		   <div class="box box-danger">
 		   	<div class="box-header with-border">
 		   		<div class="box-title">Pages</div>
@@ -37,6 +37,7 @@ import PageViewer from './PageViewer.vue'
 		components: { PageViewer },
 		data(){
 			return{
+				loading: true,
 				model: [],
 				theads:[
 				{label: 'Title'},
@@ -69,6 +70,7 @@ import PageViewer from './PageViewer.vue'
 				axios.get('/api/backend/pages').then(response => {
 					this.model = response.data
 				})
+				this.loading = false
 			}
 		}
 	}

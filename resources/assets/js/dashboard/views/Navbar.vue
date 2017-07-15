@@ -14,7 +14,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="#">
-                        HealthVille
+                       Zedhealthplus
                     </a>
                 </div>
 
@@ -35,7 +35,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                    <a href="#">
+                                    <a href="#" @click="logout">
                                            <span><i class="glyphicon glyphicon-log-out"></i></span> Logout
                                         </a>
                                     </li>
@@ -47,13 +47,12 @@
         </nav>
         <div class="container">
         <ul class="nav nav-pills nav-justified">
-              <li role="presentation" class="active"><router-link to="/dashboard"><i class="glyphicon glyphicon-home"></i> Home</router-link></li>
+              <li role="presentation" class="active"><router-link to="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</router-link></li>
+              <li role="presentation"><router-link to="/dashboard/posts"><i class="fa fa-sticky-note"></i>  Posts</router-link></li>
               <li role="presentation"><router-link to="/dashboard/pages"><i class="glyphicon glyphicon-th-large"></i>  Pages</router-link>
               </li>
-              <li role="presentation"><a href="#">Messages</a></li>
-              <li role="presentation" class="active"><a href="#">Home</a></li>
-              <li role="presentation"><a href="#">Profile</a></li>
-              <li role="presentation"><a href="#">Messages</a></li>
+              <li role="presentation"><router-link to="/dashboard/blog"><i class="fa fa-sticky-note-o"></i>  Blog</router-link></li>
+              <li role="presentation"><router-link to="/dashboard/profile"><i class="fa fa-user"></i>  Profile</router-link></li>
         </ul>
         </div>
   </section>
@@ -68,6 +67,15 @@
           },
          mounted(){
             this.user = window.User
+         },
+         methods: {
+          logout(){
+            axios.post('/api/logout').then(response => {
+              if(response.data.success){
+                window.location.reload()
+              }
+            })
+          }
          }
        }
 </script>

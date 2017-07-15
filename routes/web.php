@@ -30,3 +30,9 @@ Route::post('/home/page/{id}', 'HomeController@updatePage');
 Route::group(['prefix' => 'api', 'namespace' => 'API'], function(){
 	Route::resource('/pages', 'PageController');
 });
+
+
+/** User Api Routes **/
+Route::group(['prefix' => 'api', 'middleware' => ['auth']], function(){
+	Route::post('logout', 'UserController@logout');
+});
