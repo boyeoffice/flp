@@ -1,5 +1,14 @@
 <template>
 	<section>
+	<div v-if="loading" class="container">
+		
+			<div class="box box-danger">
+				<div class="text-center loading">
+					<i class="fa fa-repeat fa-spin"></i>
+				</div>
+			</div>
+		
+	</div>
 		<section v-if="!loading" class="container">
 		   <div class="box box-danger">
 		   	<div class="box-header with-border">
@@ -69,8 +78,8 @@ import PageViewer from './PageViewer.vue'
 			fetchData(){
 				axios.get('/api/backend/pages').then(response => {
 					this.model = response.data
+					this.loading = false
 				})
-				this.loading = false
 			}
 		}
 	}
