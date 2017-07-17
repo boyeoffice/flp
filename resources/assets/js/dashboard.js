@@ -5,6 +5,7 @@ import App from './App.vue'
 import Router from './dashboard/routes.js'
 import Vuex from 'vuex'
 import VueProgressBar from 'vue-progressbar'
+
 Vue.use(VueProgressBar, {
     color: '#ce1126',
     failedColor: 'blue',

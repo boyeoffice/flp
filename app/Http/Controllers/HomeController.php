@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function getPage($slug)
     {
         $key = Page::where('slug',$slug)->first();
-        return view('page', ['key' => $key]);
+        return view('index', ['key' => $key]);
     }
     public function updatePage(Request $request, $id)
     {

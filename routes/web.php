@@ -35,4 +35,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function(){
 /** User Api Routes **/
 Route::group(['prefix' => 'api', 'middleware' => ['auth']], function(){
 	Route::post('logout', 'UserController@logout');
+	Route::resource('posts', 'PostController');
 });
+/** Post Slug **/
+Route::get('{slug}', 'PostController@getPost');

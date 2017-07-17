@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | Zedhealthplus</title>
     <script>
     window.Url = "{{url('/')}}"
     </script>
@@ -33,7 +33,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="#">
-                        HealthVille
+                        Zedhealthplus
                     </a>
                 </div>
 
@@ -71,20 +71,19 @@
         </nav>
         <div class="container">
         <ul class="nav nav-pills nav-justified">
-              <li role="presentation" class="active"><a href="{{url('dashboard')}}"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-              <li role="presentation"><a href='{{url('dashboard/pages')}}'><i class="glyphicon glyphicon-th-large"></i>  Pages</a>
-              </li>
-              <li role="presentation"><a href="#">Messages</a></li>
-              <li role="presentation" class="active"><a href="#">Home</a></li>
-              <li role="presentation"><a href="#">Profile</a></li>
-              <li role="presentation"><a href="#">Messages</a></li>
+              <li role="presentation" class="active"><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+              <li role="presentation"><a href='{{url('dashboard/posts')}}'><i class="fa fa-sticky-note"></i>  Posts</a></li>
+             <li role="presentation"><a href='{{url('dashboard/pages')}}'><i class="glyphicon glyphicon-th-large"></i>  Pages</a></li>
+              <li role="presentation"><a href='{{url('dashboard/blog')}}'><i class="fa fa-sticky-note-o"></i>  Blog</a></li>
+             <li role="presentation"><a href='{{url('dashboard/profile')}}'><i class="fa fa-user"></i>  Profile</a></li>
         </ul>
         </div>
 
         @yield('content')
     </div>
 
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/vue.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     @yield('script')
    
