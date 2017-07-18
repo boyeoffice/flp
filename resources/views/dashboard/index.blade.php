@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="csrf-token" content="{{ csrf_token() }}">
  <script>
  	window.User = {!! json_encode(Auth::user())!!}
  	window.Url = "{{url('/')}}"

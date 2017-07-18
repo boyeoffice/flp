@@ -36,6 +36,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function(){
 Route::group(['prefix' => 'api', 'middleware' => ['auth']], function(){
 	Route::post('logout', 'UserController@logout');
 	Route::resource('posts', 'PostController');
+	Route::get('stastitics', 'Dashboard\IndexController@stastitics');
 });
 /** Post Slug **/
 Route::get('{slug}', 'PostController@getPost');
