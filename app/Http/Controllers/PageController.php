@@ -1,6 +1,6 @@
 <?php
 
-namespace Boye\Http\Controllers\Dashboard;
+namespace Boye\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Boye\Http\Controllers\Controller;
@@ -68,7 +68,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        return response()->json($page);
+        return view('pages.edit', ['page' => $page]);
     }
 
     /**
@@ -85,7 +85,7 @@ class PageController extends Controller
         $page->content = $request->input('content');
         $page->slug = str_slug($page->title);
         $page->update();
-        return response()->json(['success' => 'true']);
+        return redirect('dashboard/pages');
     }
 
     /**

@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index.home');
+        return view('home');
     }
     public function getPages() 
     {
@@ -50,17 +50,11 @@ class HomeController extends Controller
     }
     public function getEditPage($id)
     {
-        $page = Page::find($id);
-        return view('pages.edit', ['page' => $page]);
+        //
     }
     public function postEditPage(Request $request,$id)
     {
-        $page = Page::find($id);
-        $page->title = $request->input('title');
-        $page->content = $request->input('content');
-        $page->slug = str_slug($page->title);
-        $page->update();
-        return redirect('dashboard/pages');
+        //
     }
      public function uploadImage(Request $request)
     {

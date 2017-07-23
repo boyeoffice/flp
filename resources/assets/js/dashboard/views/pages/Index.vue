@@ -51,7 +51,7 @@ import PageViewer from './PageViewer.vue'
 				theads:[
 				{label: 'Title'},
 				{label: 'Views'},
-				{label: 'Created By'},
+				{label: 'Link'},
 				{label: 'Date'},
 				{label: 'Action'}
 				],
@@ -69,14 +69,14 @@ import PageViewer from './PageViewer.vue'
 				this.formPage = true
 			},
 			createPage(){
-				axios.post('/api/backend/pages', this.form).then(response => {
+				axios.post('/api/pages', this.form).then(response => {
 					if(response.data.success) {
 						window.location.reload()
 					}
 				})
 			},
 			fetchData(){
-				axios.get('/api/backend/pages').then(response => {
+				axios.get('/api/pages').then(response => {
 					this.model = response.data
 					this.loading = false
 				})

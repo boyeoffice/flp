@@ -2,9 +2,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import Vuex from 'vuex'
-import Vueditor from 'vueditor'
-import 'vueditor/dist/style/vueditor.min.css'
 import VueProgressBar from 'vue-progressbar'
+import Router from './administrator/routes.js'
+import App from './App.vue'
 Vue.use(VueProgressBar, {
     color: '#ce1126',
     failedColor: 'blue',
@@ -12,9 +12,10 @@ Vue.use(VueProgressBar, {
 });
 
 Vue.use(Vuex);
-Vue.component('home', require('./index/Home.vue'));
-Vue.component('pages', require('./index/pages/Index.vue'));
+
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  render: h => h(App),
+  router: Router
 });
 

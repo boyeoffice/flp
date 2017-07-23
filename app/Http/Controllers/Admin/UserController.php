@@ -1,25 +1,23 @@
 <?php
 
-namespace Boye\Http\Controllers\API;
+namespace Boye\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Boye\Http\Controllers\Controller;
-use Boye\Page;
 use Boye\User;
 use Auth;
 
-class PageController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = $request->user();
-        $data = Page::where('user_id', $user->id)->get();
-        return response()->json($data);
+        $users = User::all();
+        return response()->json($users);
     }
 
     /**
@@ -40,12 +38,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $page = new Page();
-        $page->title = $request->get('title');
-        $page->slug = str_slug($page->title);
-        $page->user_id = Auth::user()->id;
-        $page->save();
-        return response()->json(['success' => true]);
+        //
     }
 
     /**
@@ -67,8 +60,7 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::find($id);
-        return response()->json($page);
+        //
     }
 
     /**
@@ -80,12 +72,13 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $page = Page::find($id);
-        $page->title = $request->input('title');
-        $page->content = $request->input('content');
-        $page->slug = str_slug($page->title);
-        $page->update();
-        return response()->json(['success' => 'true']);
+        if(Auth::user()->is_admin == 1){
+        $user= User::findOrfail($id);
+        $user->update($request->all());
+        return response()->json(['updated' => true]);
+       }else{
+        return response()->json(['updated' => false]);
+       }
     }
 
     /**
@@ -96,6 +89,11 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+       if(Auth::user()->is_admin == 1){
+        User::find($id)->delete();
+        return response()->json(['deleted' => true]);
+        }else{
+            return response()->json(['deleted' => false]);
+        }
     }
 }

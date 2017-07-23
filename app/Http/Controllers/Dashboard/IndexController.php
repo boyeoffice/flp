@@ -8,12 +8,19 @@ use Boye\Post;
 use Boye\User;
 use Boye\Page;
 use Boye\Visitor;
+use Auth;
 
 class IndexController extends Controller
 {
     public function index()
     {
-    	return view('dashboard.index');
+    	if(Auth::user()->status == 1)
+    	{
+    		return view('dashboard.index');
+    	}else{
+           return redirect('home');
+    	}
+
     }
     public function stastitics(Request $request)
     {

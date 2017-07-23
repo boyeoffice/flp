@@ -3,6 +3,7 @@
 namespace Boye\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class MustBeAdmin
 {

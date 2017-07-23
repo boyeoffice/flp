@@ -7,7 +7,8 @@
 <section class="content">
 <section class="container">
 		<section class="row">
-		<form action="{{url('dashboard/edit_page/'. $page->id)}}" method="post">
+		<form action="{{url('api/pages', $page->id)}}" method="post">
+		{{method_field('PUT')}}
 		 {{ csrf_field() }}
 		<section class="col-md-9">
 			<section class="box box-danger">

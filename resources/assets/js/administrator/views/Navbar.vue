@@ -34,7 +34,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                 <li v-if="user.is_admin == 1">
+                                <li>
                                     <a :href="url + '/admin/home'">
                                            <span><i class="glyphicon glyphicon-log-out"></i></span> Administrator
                                         </a>
@@ -52,12 +52,12 @@
         </nav>
         <div class="container">
         <ul class="nav nav-pills nav-justified">
-              <li role="presentation" class="active"><router-link to="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</router-link></li>
-              <li role="presentation"><router-link to="/dashboard/posts"><i class="fa fa-sticky-note"></i>  Posts</router-link></li>
-              <li role="presentation"><router-link to="/dashboard/pages"><i class="glyphicon glyphicon-th-large"></i>  Pages</router-link>
+              <li role="presentation" class="active"><router-link to="/admin/home"><i class="fa fa-dashboard"></i> Dashboard</router-link></li>
+              <li role="presentation"><router-link to="/admin/home/users"><i class="fa fa-users"></i>  Users</router-link></li>
+              <li role="presentation"><router-link to="/admin/home"><i class="glyphicon glyphicon-th-large"></i>  Pages</router-link>
               </li>
-              <li role="presentation"><router-link to="/dashboard/blog"><i class="fa fa-sticky-note-o"></i>  Blog</router-link></li>
-              <li role="presentation"><router-link to="/dashboard/profile"><i class="fa fa-user"></i>  Profile</router-link></li>
+              <li role="presentation"><router-link to="/admin/home"><i class="fa fa-sticky-note-o"></i>  Blog</router-link></li>
+              <li role="presentation"><router-link to="/admin/home"><i class="fa fa-user"></i>  Profile</router-link></li>
         </ul>
         </div>
   </section>
