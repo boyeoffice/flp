@@ -44,7 +44,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
     </div>
 </div>
 <div class="copyright">
-    <p>© 2017 HealthVille. All rights reserved | Design by  <a href="http://boyeoffice.com/" target="_blank">  Boye Olakunle </a></p>
+    <p>© 2017 ZedHealthPlus. All rights reserved | Design by  <a href="http://boyeoffice.com/" target="_blank">  Boye Olakunle </a></p>
 </div>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>

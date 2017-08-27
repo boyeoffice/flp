@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('title')
-Create Post
+{{$post->title}}
 @endsection
+
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('editor/styles/simditor.css')}}">
@@ -10,19 +11,19 @@ Create Post
 <section class="content">
 	<section class="container">
 		<div class="row">
-		<form action="{{url('api/posts', $post->id)}}" method="POST">
+		<form action="{{route('posts.update', $post->id)}}" method="POST">
 		{{method_field('PUT')}}
 		{{ csrf_field() }}
 			<div class="col-md-9">
 				<div class="box box-danger">
 					<div class="box-header with-border">
-						<div class="box-title">Edit Post</div>
+						<div class="box-title">Create Post</div>
 					</div>
 					<div class="box-body">
 						<div class="form-group">
-								<input type="text" name="title" class="form-control" value="{{$post->title}}">
+								<input type="text" name="title" value="{{$post->title}}" class="form-control">
 							</div>
-					<textarea class="form-control" id="txt-content" name="content">{{$post->content}}</textarea>
+					<textarea class="form-control" id="txt-content" name="content">{!! $post->content !!}</textarea>
 						
 					</div>
 				  </div>
@@ -32,11 +33,8 @@ Create Post
 					<div class="box-header with-border">
 						<div class="box-title">Publish</div>
 					</div>
-					<div v-if="loading" class="text-center loading">
-					<i class="fa fa-repeat fa-spin"></i>
-				    </div>
-					<div class="box-body" v-if="!loading">
-						<button type="submit" v-on:click="clickB" class="btn btn-primary">Publish</button>
+					<div class="box-body">
+						<button type="submit" class="btn btn-primary">Publish</button>
 					</div>
 				</div>
 			</div>
@@ -63,17 +61,4 @@ Create Post
         }
     </script>
 <script type="text/javascript" src="{{asset('editor/editor.js')}}"></script>
-<script>
-	var app = new Vue({
-		el: '#app',
-		data: {
-			loading: false
-		},
-		methods: {
-		   clickB(){
-		   	this.loading = true
-		   }
-		}
-	});
-</script>
 @endsection

@@ -27,7 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if(!Auth::user()->status == 1) {
+            return view('home');
+        }else{
+            return redirect('dashboard');
+        }
+        
     }
     public function getPages() 
     {
@@ -37,24 +42,6 @@ class HomeController extends Controller
     {
         $key = Page::where('slug',$slug)->first();
         return view('index', ['key' => $key]);
-    }
-    public function updatePage(Request $request, $id)
-    {
-        //dd($request);
-        $page = Page::find($id);
-        $page->title = $request->get('title');
-        $page->content = $request->get('content');
-        $page->slug = str_slug($page->title);
-        $page->update();
-        return redirect('home/pages');
-    }
-    public function getEditPage($id)
-    {
-        //
-    }
-    public function postEditPage(Request $request,$id)
-    {
-        //
     }
      public function uploadImage(Request $request)
     {

@@ -31,11 +31,8 @@ Create Post
 					<div class="box-header with-border">
 						<div class="box-title">Publish</div>
 					</div>
-					<div v-if="loading" class="text-center loading">
-					<i class="fa fa-repeat fa-spin"></i>
-				    </div>
-					<div class="box-body" v-if="!loading">
-						<button type="submit" v-on:click="clickB" class="btn btn-primary">Publish</button>
+					<div class="box-body">
+						<button type="submit" class="btn btn-primary">Publish</button>
 					</div>
 				</div>
 			</div>
@@ -62,17 +59,4 @@ Create Post
         }
     </script>
 <script type="text/javascript" src="{{asset('editor/editor.js')}}"></script>
-<script>
-	var app = new Vue({
-		el: '#app',
-		data: {
-			loading: false
-		},
-		methods: {
-		   clickB(){
-		   	this.loading = true
-		   }
-		}
-	});
-</script>
 @endsection

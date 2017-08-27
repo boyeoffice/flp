@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+Create Page
+@endsection
 @section('style')
 <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('editor/styles/simditor.css')}}">
@@ -7,18 +10,17 @@
 <section class="content">
 <section class="container">
 		<section class="row">
-		<form action="{{url('api/pages', $page->id)}}" method="post">
-		{{method_field('PUT')}}
+		<form action="{{route('pages.store')}}" method="post">
 		 {{ csrf_field() }}
 		<section class="col-md-9">
 			<section class="box box-danger">
 					<div class="box-header with-border">Edit Page</div>
 					<div class="box-body">
 						<div class="form-group">
-							<input type="text" name="title" class="form-control" value="{{$page->title}}">
+							<input type="text" name="title" class="form-control">
 						</div>
 						<div class="form-group">
-							<textarea id="txt-content" name="content" rows="18" class="form-control">{{ $page->content }}</textarea> 
+							<textarea id="txt-content" name="content" rows="18" class="form-control"></textarea> 
 						</div>
 					</div>
 		    </section>

@@ -9,7 +9,7 @@
     }
     editor = new Simditor({
       textarea: $('#txt-content'),
-      placeholder: '这里输入文字...',
+      placeholder: 'Content...',
       toolbar: toolbar,
       pasteImage: true,
       allowedStyles: null,

@@ -7,6 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') | Zedhealthplus</title>
+     <style>
+        [v-cloak] { display: none; }
+       </style>
     <script>
     window.Url = "{{url('/')}}"
     </script>
@@ -51,6 +54,11 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                @if(Auth::user()->is_admin == 1)
+                                  <li>
+                                      <a href="{{url('admin/home')}}"><span class="glyphicon glyphicon-log-out">Administrator</span> </a>
+                                  </li>
+                                  @endif
                                     <li>
                                     <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -69,20 +77,21 @@
         </nav>
         <div class="container">
         <ul class="nav nav-pills nav-justified">
-              <li role="presentation" class="active"><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-              <li role="presentation"><a href='{{url('dashboard/posts')}}'><i class="fa fa-sticky-note"></i>  Posts</a></li>
-             <li role="presentation"><a href='{{url('dashboard/pages')}}'><i class="glyphicon glyphicon-th-large"></i>  Pages</a></li>
+              <li role="presentation" class="@if(Request::is('dashboard')) active @endif"><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+              <li role="presentation" class="@if(Request::is('dashboard/posts')) active @endif"><a href='{{url('dashboard/posts')}}'><i class="fa fa-sticky-note"></i>  Posts</a></li>
+             <li role="presentation" class="@if(Request::is('dashboard/pages')) active @endif"><a href='{{url('dashboard/pages')}}'><i class="glyphicon glyphicon-th-large"></i>  Pages</a></li>
               <li role="presentation"><a href='{{url('dashboard/blog')}}'><i class="fa fa-sticky-note-o"></i>  Blog</a></li>
              <li role="presentation"><a href='{{url('dashboard/profile')}}'><i class="fa fa-user"></i>  Profile</a></li>
         </ul>
         </div>
-
+        <div class="content">
         @yield('content')
-    </div>
+        </div>
+        </div>
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/vue.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/dashboard.js')}}"></script>
     @yield('script')
    
 </body>

@@ -7,18 +7,19 @@
 
 /* Dashboard Index */
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => ['auth']], function () {
-   Route::get('{path?}', 'IndexController@index')->where('path', '[\/\w\.-]*');
+   Route::get('/', 'IndexController@index');
+   Route::resource('posts', 'PostController');
+   Route::resource('pages', 'PageController');
 });
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['prefix' => 'api'], function(){
-	Route::resource('/pages', 'PageController');
-});
+
 /** User Api Routes **/
 Route::group(['prefix' => 'api', 'middleware' => ['auth']], function(){
 	Route::post('logout', 'UserController@logout');
-	Route::resource('posts', 'PostController');
 	Route::get('stastitics', 'Dashboard\IndexController@stastitics');
+	Route::get('posts', 'Dashboard\PostController@getPost');
+	Route::get('pages', 'Dashboard\PageController@getPages');
 });
 /** Post Slug **/
 Route::get('{slug}', 'PostController@getPost');

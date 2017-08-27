@@ -10,4 +10,8 @@ class Page extends Model
     {
     	return $this->belongTo(User::class);
     }
+    public function visits()
+    {
+    	return $this->hasMany(Visitor::class);
+    }
 }

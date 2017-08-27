@@ -14,7 +14,7 @@
                    	@add-user="fetchUser"
                    	@activate-user="fetchUser"
                     @deactivate-user="fetchUser"
-                   	:user="user" :key="users"></user-viewer>
+                   	:user="user" :key="users.id"></user-viewer>
                    </tbody>
 				</table>
 			</div>

@@ -1,13 +1,15 @@
 <?php
 
-namespace Boye\Http\Controllers\Admin;
+namespace Boye\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use Boye\Http\Controllers\Controller;
+use Boye\Post;
 use Boye\User;
 use Auth;
+use Boye\Visitor;
 
-class UserController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        return view('dashboard.posts.index');
+    }
+    public function getPost(Request $request)
+    {
+        $user = $request->user();
+        $posts = Post::where('user_id', $user->id)->with('visits')->orderBy('created_at', 'desc')->get();
+        //$visit = Visitor::where('post_id', '=', $posts->id)->count();
+        return response()->json($posts);
     }
 
     /**
@@ -27,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.posts.create');
     }
 
     /**
@@ -38,7 +46,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required'
+            ]);
+        $post = new Post;
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->slug = str_slug($request->title);
+        $post->image = 'default.jpg';
+        $post->save();
+        return redirect('dashboard/posts');
+
     }
 
     /**
@@ -60,7 +80,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('dashboard.posts.edit')->withPost($post);
     }
 
     /**
@@ -72,13 +93,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Auth::user()->is_admin == 1){
-        $user= User::findOrfail($id);
-        $user->update($request->all());
-        return response()->json(['updated' => true]);
-       }else{
-        return response()->json(['updated' => false]);
-       }
+         $post = Post::find($id);
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->slug = str_slug($request->title);
+        $post->update();
+        return redirect('dashboard/posts');
     }
 
     /**
@@ -89,11 +109,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-       if(Auth::user()->is_admin == 1){
-        User::find($id)->delete();
-        return response()->json(['deleted' => true]);
-        }else{
-            return response()->json(['deleted' => false]);
-        }
+        //
     }
 }

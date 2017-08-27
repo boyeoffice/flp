@@ -1,9 +1,10 @@
 <?php
 
-namespace Boye\Http\Controllers;
+namespace Boye\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use Boye\Http\Controllers\Controller;
+use Boye\Visitor;
 use Boye\Page;
 use Boye\User;
 use Auth;
@@ -15,10 +16,14 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
+    {
+        return view('dashboard.pages.index');
+    }
+    public function getPages(Request $request)
     {
         $user = $request->user();
-        $data = Page::where('user_id', $user->id)->get();
+        $data = Page::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
         return response()->json($data);
     }
 
@@ -29,7 +34,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pages.create');
     }
 
     /**
@@ -40,12 +45,13 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $page = new Page();
+         $page = new Page();
         $page->title = $request->get('title');
+        $page->content = $request->input('content');
         $page->slug = str_slug($page->title);
         $page->user_id = Auth::user()->id;
         $page->save();
-        return response()->json(['success' => true]);
+         return redirect('dashboard/pages');
     }
 
     /**
@@ -68,7 +74,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        return view('pages.edit', ['page' => $page]);
+        return view('dashboard.pages.edit')->withPage($page);
     }
 
     /**

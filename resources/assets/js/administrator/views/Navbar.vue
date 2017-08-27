@@ -35,8 +35,8 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a :href="url + '/admin/home'">
-                                           <span><i class="glyphicon glyphicon-log-out"></i></span> Administrator
+                                    <a :href="url + '/dashboard'">
+                                           <span><i class="glyphicon glyphicon-log-out"></i></span> Dashboard
                                         </a>
                                     </li>
                                     <li>

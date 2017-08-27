@@ -1,24 +1,64 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="csrf-token" content="{{ csrf_token() }}">
- <script>
- 	window.User = {!! json_encode(Auth::user())!!}
- 	window.Url = "{{url('/')}}"
- </script>
-	<title>Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('css/dashboard.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
-	 <style>
-        [v-cloak] { display: none; }
-       </style>
-</head>
-<body>
-<div id="app"></div>
-<script src={{asset('js/dashboard.js')}}></script>
-<script src={{asset('js/bootstrap.min.js')}}></script>
-</body>
-</html>
+@extends('layouts.app')
+@section('title')
+Dashboard
+@endsection
+
+@section('content')
+<section class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="box box-danger">
+					<div class="box-header with-border">
+						<div class="box-title">Posts</div>
+						<div class="box-tool pull-right">
+							<button class="btn btn-success btn-sm">All</button>
+						</div>
+					</div>
+					<div class="box-body">
+					<span class="text-center"><h2> {{$posts}}</h2></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="box box-danger">
+					<div class="box-header with-border">
+						<div class="box-title">Pages</div>
+						<div class="box-tool pull-right">
+							<button class="btn btn-success btn-sm">All</button>
+						</div>
+					</div>
+					<div class="box-body">
+					<span class="text-center"><h2>{{$pages}}</h2></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="box box-danger">
+					<div class="box-header with-border">
+						<div class="box-title">Blog</div>
+						<div class="box-tool pull-right">
+							<button class="btn btn-sm btn-success">All</button>
+						</div>
+					</div>
+					<div class="box-body">
+					<span class="text-center"><h2>0</h2></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="box box-danger">
+					<div class="box-header with-border">
+						<div class="box-title">Visitors</div>
+						<div class="box-tool pull-right">
+							<button class="btn btn-success btn-sm">All</button>
+						</div>
+					</div>
+					<div class="box-body">
+					<span class="text-center"><h2>0</h2></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+@endsection
+

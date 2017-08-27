@@ -12,11 +12,14 @@ use Auth;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $user = $request->user();
+         $posts = Post::where('user_id', $user->id)->count();
+         $pages = Page::where('user_id', $user->id)->count();
     	if(Auth::user()->status == 1)
     	{
-    		return view('dashboard.index');
+    		return view('dashboard.index')->withPosts($posts)->withPages($pages);
     	}else{
            return redirect('home');
     	}
@@ -27,7 +30,6 @@ class IndexController extends Controller
     	$user = $request->user();
          $posts = Post::where('user_id', $user->id)->count();
          $pages = Page::where('user_id', $user->id)->count();
-         $data = compact(['posts', 'pages']);
-         return response()->json($data);
+         return view('dashboard.index')->withPosts($posts);
     }
 }
