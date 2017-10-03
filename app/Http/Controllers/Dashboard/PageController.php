@@ -16,17 +16,12 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('dashboard.pages.index');
-    }
-    public function getPages(Request $request)
+    public function index(Request $request)
     {
         $user = $request->user();
         $data = Page::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
         return response()->json($data);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +29,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('dashboard.pages.create');
+       //
     }
 
     /**
@@ -45,13 +40,17 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-         $page = new Page();
+        $this->validate($request, [
+            'title' => 'required|min:5|unique:pages',
+            'content' => 'required'
+            ]);
+        $page = new Page();
         $page->title = $request->get('title');
         $page->content = $request->input('content');
-        $page->slug = str_slug($page->title);
+        $page->slug = time(). '-'. str_slug($page->title);
         $page->user_id = Auth::user()->id;
         $page->save();
-         return redirect('dashboard/pages');
+         return response()->json(['success' => true]);
     }
 
     /**
@@ -74,7 +73,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
-        return view('dashboard.pages.edit')->withPage($page);
+        return response()->json($page);
     }
 
     /**
@@ -86,12 +85,15 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required'
+            ]);
         $page = Page::find($id);
         $page->title = $request->input('title');
         $page->content = $request->input('content');
-        $page->slug = str_slug($page->title);
         $page->update();
-        return redirect('dashboard/pages');
+        return response()->json(['success' => true]);
     }
 
     /**

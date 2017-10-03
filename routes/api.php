@@ -25,3 +25,4 @@ Route::get('v1/users', function(){
 Route::group(['prefix' => 'v1/boye/backend'], function(){
 	Route::get('statistics', 'HomeController@Statistics');
 });
+Route::post('upload_image', 'Dashboard\PostController@uploadImage');

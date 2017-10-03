@@ -14,12 +14,9 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
-        $user = $request->user();
-         $posts = Post::where('user_id', $user->id)->count();
-         $pages = Page::where('user_id', $user->id)->count();
     	if(Auth::user()->status == 1)
     	{
-    		return view('dashboard.index')->withPosts($posts)->withPages($pages);
+    		return view('dashboard');
     	}else{
            return redirect('home');
     	}
@@ -30,6 +27,6 @@ class IndexController extends Controller
     	$user = $request->user();
          $posts = Post::where('user_id', $user->id)->count();
          $pages = Page::where('user_id', $user->id)->count();
-         return view('dashboard.index')->withPosts($posts);
+         return response()->json(['posts' => $posts, 'pages' => $pages]);
     }
 }

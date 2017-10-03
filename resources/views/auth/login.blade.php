@@ -1,52 +1,71 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-<title>Login | Zedhealthplus</title>
-<!-- Meta tag Keywords -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Meta tag Keywords -->
-<!-- css files -->
-<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" media="all" /> <!-- Style-CSS --> 
-<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"> <!-- Font-Awesome-Icons-CSS -->
-<link href="//fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
-</head>
-<body style="background: url('img/bg6.jpg');"> 
-<div class="w3ls-header">
-    <h1> Zedhealthplus</h1>
-    <div class="header-main">
-        <h2>login To Start Session </h2>
-            <div class="header-bottom">
-                <div class="header-right w3agile">
-                    <div class="header-left-bottom agileinfo">
-                        <form method="POST" action="{{ route('login') }}">
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Login</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
-                            <div class="icon1{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <input type="email" name="email" placeholder="Email@example.com" value="{{ old('email') }}" required=""/>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="icon1{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="password" type="password" name="password" placeholder="Password" required=""/>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="login-check">
-                                 <label class="checkbox"><input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}><i> </i> Keep me logged in</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                    </label>
+                                </div>
                             </div>
-                            <div class="bottom">
-                                <input type="submit" value="Log in" />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Forgot Your Password?
+                                </a>
                             </div>
-                            <p><a href="{{ route('password.request') }}">Forgot Your Password?</a> </p>
-                            <p><a href="{{ route('register') }}">Don't have an account?</a> </p>
-                    </form> 
-                    </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <div class="center-block">Designed By Olakunle Boye</div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
-<div class="copyright">
-    <p>© 2017 ZedHealthPlus. All rights reserved | Design by  <a href="http://boyeoffice.com/" target="_blank">  Boye Olakunle </a></p>
-</div>
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
-</body>
-</html>
+@endsection

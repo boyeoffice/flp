@@ -1,99 +1,93 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-<title>Register | Zedhealthplus</title>
-<!-- Meta tag Keywords -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Meta tag Keywords -->
-<!-- css files -->
-<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" media="all" /> <!-- Style-CSS --> 
-<link rel="stylesheet" href="{{asset('css/font-awesome.css')}}"> <!-- Font-Awesome-Icons-CSS -->
-<link href="//fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext,vietnamese" rel="stylesheet">
-<style type="text/css">
-.header-main::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 0;
-        height: 0;
-        border-top: 100px solid #3be8b0;
-        border-right: 0px solid transparent;
-        border-left: 340px solid transparent;
-        z-index: -1;
-   }
-.header-main::before {
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 0;
-    height: 0;
-    border-top: 100px solid #ff4f81;
-    border-right: 322px solid transparent;
-    border-left: 0px solid transparent;
-         }
-.header-main {
-    padding: 5em 4em 2.5em;
-    margin: 0 auto;
-    background: rgba(0, 0, 0, 0.56);
-    background: #fff;
-    text-align: center;
-    position: relative;
-    z-index: 999;
- }
-.header-left-bottom input[type="text"] {
-        outline: none;
-        font-size: 15px;
-        color: #000;
-        border: none;
-        width: 90%;
-        display: inline-block;
-        background: transparent;
-        font-family: 'Muli', sans-serif;
-        text-align: center;
-        letter-spacing: 2px;
- }
-</style>
-</head>
-<body style="background: url('img/bg6.jpg');"> 
-<div class="w3ls-header">
-    <h1> Zedhealthplus</h1>
-    <div class="header-main">
-            <div class="header-bottom">
-                <div class="header-right w3agile">
-                    <div class="header-left-bottom agileinfo">
-                        <form method="POST" action="{{ route('register') }}">
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Register</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-                        <div class="icon1{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <input type="text" name="username" placeholder="Username" value="{{ old('username') }}" required=""/>
+
+                       <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Username</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+
+                                @if ($errors->has('username'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                        <div class="icon1{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <input type="text" name="name" placeholder="Full Name" value="{{ old('name') }}" required=""/>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="icon1{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <input type="email" name="email" placeholder="Email@example.com" value="{{ old('email') }}" required=""/>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="icon1{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <input id="password" type="password" name="password" placeholder="Password" required=""/>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="icon1{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <input id="password" type="password" name="password_confirmation" placeholder="Repeat Password" required=""/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
-                            <div class="bottom">
-                                <input type="submit" value="Register" />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
                             </div>
-                    </form> 
-                    </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <div class="center-block">Designed By Olakunle Boye</div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
-<div class="copyright">
-    <p>© 2017 Zedhealthplus. All rights reserved | Design by  <a href="http://boyeoffice.com/" target="_blank">  Boye Olakunle </a></p>
-</div>
-</body>
-</html>
+@endsection

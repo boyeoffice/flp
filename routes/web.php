@@ -2,28 +2,22 @@
  Route::get('/', function() {
  	return view('welcome')->name('home');
  });
- Route::get('health/{slug}', 'HomeController@getPage');
- Route::post('upload_image', 'HomeController@uploadImage')->name('posts.upload_image');
+ Auth::routes();
 
 /* Dashboard Index */
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => ['auth']], function () {
-   Route::get('/', 'IndexController@index');
-   Route::resource('posts', 'PostController');
-   Route::resource('pages', 'PageController');
+   Route::get('{path?}', 'IndexController@index')->where('path', '[\/\w\.-]*');;
 });
-Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 /** User Api Routes **/
 Route::group(['prefix' => 'api', 'middleware' => ['auth']], function(){
 	Route::post('logout', 'UserController@logout');
 	Route::get('stastitics', 'Dashboard\IndexController@stastitics');
-	Route::get('posts', 'Dashboard\PostController@getPost');
-	Route::get('pages', 'Dashboard\PageController@getPages');
+	Route::resource('posts', 'Dashboard\PostController');
+	Route::resource('pages', 'Dashboard\PageController');
 });
-/** Post Slug **/
-Route::get('{slug}', 'PostController@getPost');
-
 
 /** Admin **/
 Route::group(['prefix' => 'admin/home', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
@@ -34,3 +28,9 @@ Route::group(['prefix' => 'api/admin', 'namespace' => 'Admin', 'middleware' => [
 	Route::resource('users', 'UserController');
 	Route::get('posts', 'IndexController@getPost');
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
+/** Post Slug **/
+Route::get('{slug}', 'IndexController@getPost');
+
+ Route::get('health/{slug}', 'IndexController@getPage');

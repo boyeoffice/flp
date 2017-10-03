@@ -8,6 +8,8 @@ use Boye\Post;
 use Boye\User;
 use Auth;
 use Boye\Visitor;
+use Image;
+use File;
 
 class PostController extends Controller
 {
@@ -16,16 +18,28 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('dashboard.posts.index');
-    }
-    public function getPost(Request $request)
-    {
+    public function index(Request $request)
+    {   
         $user = $request->user();
         $posts = Post::where('user_id', $user->id)->with('visits')->orderBy('created_at', 'desc')->get();
         //$visit = Visitor::where('post_id', '=', $posts->id)->count();
         return response()->json($posts);
+    }
+    public function uploadImage(Request $request)
+    {
+        $this->validate($request, [
+            'image_upload' => 'required',
+            ]);
+        if($request->hasFile('image_upload')){
+            $image = $request->file('image_upload');
+            $filename = str_random() . '.' . $image->getClientOriginalExtension() ?: 'png';
+            $path = public_path('/content/');
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $location = $path . '/' . $filename;
+            Image::make($image)->resize(600,400)->save($location);
+            $link = url('/') . '/content/' . $filename;
+        }
+        return response()->json(['link' => $link]);
     }
 
     /**
@@ -46,18 +60,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
+         $this->validate($request, [
+            'title' => 'required|min:5|unique:posts',
             'content' => 'required'
             ]);
         $post = new Post;
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->slug = str_slug($request->title);
+        $post->slug = time().'-'.str_slug($request->title);
         $post->image = 'default.jpg';
         $post->save();
-        return redirect('dashboard/posts');
+        return response()->json(['success' => true]);
 
     }
 
@@ -81,7 +95,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('dashboard.posts.edit')->withPost($post);
+        return response()->json($post);
     }
 
     /**
@@ -93,12 +107,15 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|min:5',
+            'content' => 'required'
+            ]);
          $post = Post::find($id);
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->slug = str_slug($request->title);
         $post->update();
-        return redirect('dashboard/posts');
+        return response()->json(['success' => true]);
     }
 
     /**

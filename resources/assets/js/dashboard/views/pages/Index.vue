@@ -5,7 +5,7 @@
 		   	<div class="box-header with-border">
 		   		<div class="box-title">Pages</div>
 		   		<div class="box-tools pull-right">
-		   		<a :href="'/dashboard/pages/create'" class="btn btn-success btn-sm">Create</a></div>
+		   		<router-link to="/dashboard/pages/create" class="btn btn-success btn-sm">Create</router-link></div>
 		   			</div>
 		   		<div class="box-body">
 		   			<table class="table table-bordered">
@@ -15,7 +15,17 @@
 		   					</tr>
 		   				</thead>
 		   				<tbody>
-		   					<page-viewer v-for="page in model" :page="page" :key="page.id"></page-viewer>
+		   					<tr v-for="page in model">
+								<td>{{page.title}}</td>
+								<td>0</td>
+								<td>{{url}}/health/{{page.slug}}</td>
+								<td>{{page.created_at}}</td>
+								<td>
+									<a :href="url + '/health/' + page.slug" class="btn btn-info btn-sm" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>
+									<router-link :to="'/dashboard/pages/' + page.id + '/edit'" class="btn btn-primary btn-sm" title="Edit"><i class="glyphicon glyphicon-pencil"></i> </router-link>
+									<a href="#" class="btn btn-danger btn-sm" title="Delete"> <i class="glyphicon glyphicon-trash"></i></a>
+								</td>
+							</tr>
 		   				</tbody>
 		   			</table>
 		   		</div>
@@ -24,12 +34,11 @@
 	</section>
 </template>
 <script>
-import PageViewer from './PageViewer.vue'
 	export default {
-		components: { PageViewer },
 		data(){
 			return{
 				model: [],
+				url: window.Url,
 				theads:[
 				{label: 'Title'},
 				{label: 'Views'},
