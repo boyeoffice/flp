@@ -4,6 +4,7 @@ window.Vue = require('vue');
 
 import Router from './dashboard/routes.js'
 import App from './App.vue'
+import { store } from './store'
 
 window.Nprogress = require('nprogress')
 axios.interceptors.request.use(function (config) {
@@ -38,6 +39,7 @@ Vue.use(VueFroala)
 var app = new Vue({
   el: '#app',
   render: h => h(App),
-  router: Router
+  router: Router,
+  store
 });
 

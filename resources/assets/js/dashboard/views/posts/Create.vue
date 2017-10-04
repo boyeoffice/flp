@@ -10,7 +10,7 @@
 					</div>
 					<div class="box-body">
 						<div class="form-group">
-								<input type="text" v-model="form.title" class="form-control">
+								<input type="text" v-model="form.title" class="form-control" placeholder="Title">
 							</div>
 					<froala :tag="'textarea'" :config="config" v-model="form.content"></froala>
 						

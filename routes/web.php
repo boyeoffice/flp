@@ -14,6 +14,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 /** User Api Routes **/
 Route::group(['prefix' => 'api', 'middleware' => ['auth']], function(){
 	Route::post('logout', 'UserController@logout');
+	Route::put('updateprofile', 'UserController@updateProfile');
+	Route::put('update_password', 'UserController@updatePassword');
 	Route::get('stastitics', 'Dashboard\IndexController@stastitics');
 	Route::resource('posts', 'Dashboard\PostController');
 	Route::resource('pages', 'Dashboard\PageController');

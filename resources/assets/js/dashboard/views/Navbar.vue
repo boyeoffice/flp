@@ -27,7 +27,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                     <li><img class="img img-circle" :src="url + '/avatars/' + user.avatar" width="40" height="40"></li>
-                     <li class="top-li">{{user.username}}</li>
+                     <li class="top-li">{{user.name}}</li>
                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><i class="glyphicon glyphicon-bell"></i></span></a> </li>
                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span><i class="glyphicon glyphicon-globe"></i></span> </a></li>
                             <li class="dropdown">
@@ -65,13 +65,14 @@
   export default {
           data(){
             return{
-             user: {},
              url: window.Url
             }
           },
-         mounted(){
-            this.user = window.User
-         },
+          computed: {
+            user(){
+              return this.$store.state.auth_user
+            }
+          },
          methods: {
           logout(){
             axios.post('/api/logout').then(response => {
