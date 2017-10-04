@@ -11,8 +11,4 @@ class Visitor extends Model
     {
     	return $this->belongsTo(Post::class);
     }
-    public function page()
-    {
-    	return $this->belongsTo(Page::class);
-    }
 }

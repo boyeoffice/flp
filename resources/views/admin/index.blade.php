@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('css/nprogress.css')}}">
 </head>
 <body>
 <div id="app"></div>

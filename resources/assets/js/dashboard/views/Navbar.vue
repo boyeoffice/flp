@@ -34,9 +34,9 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a :href="url + '/dashboard'">
-                                           <span><i class="glyphicon glyphicon-log-out"></i></span> Dashboard
+                                <li v-if="user.is_admin == 1">
+                                    <a href="/admin/home">
+                                           <span><i class="glyphicon glyphicon-log-out"></i></span> Adminstrator
                                         </a>
                                     </li>
                                     <li>

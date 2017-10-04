@@ -3,7 +3,7 @@
 		<section class="container">
 			<div class="box box-danger">
 				<div class="box-header with-border">
-					<div class="box-title">Posts</div>
+					<div class="box-title">Pages</div>
 				</div>
 				<div class="box-body">
 					<table class="table table-condensed">
@@ -11,13 +11,13 @@
 							<th v-for="th in theads">{{th.label}}</th>
 						</thead>
 						<tbody>
-							<tr v-for="post in posts">
-								<td>{{post.id}}</td>
-								<td>{{post.title}}</td>
-								<td>{{post.user.name}}</td>
-								<td>{{post.slug}}</td>
-								<td>{{post.created_at}}</td>
-							    <td>{{post.visits.length}}</td>
+							<tr v-for="page in pages">
+								<td>{{page.id}}</td>
+								<td>{{page.title}}</td>
+								<td>{{page.user.name}}</td>
+								<td>{{page.slug}}</td>
+								<td>{{page.created_at}}</td>
+								<td>{{page.page_view.length}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -31,7 +31,7 @@
 	export default {
 		data(){
 			return{
-				posts: [],
+				pages: [],
 				theads: [
 				{label: 'ID'},
 				{label: 'Title'},
@@ -43,12 +43,12 @@
 			}
 		},
 		mounted(){
-			this.fetchUser()
+			this.fetchPage()
 		},
 		methods: {
-			fetchUser(){
-				axios.get('/api/admin/posts').then(response => {
-					this.posts = response.data
+			fetchPage(){
+				axios.get('/api/admin/pages').then(response => {
+					this.pages = response.data
 				})
 			}
 		}

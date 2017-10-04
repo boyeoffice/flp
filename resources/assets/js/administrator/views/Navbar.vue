@@ -52,12 +52,11 @@
         </nav>
         <div class="container">
         <ul class="nav nav-pills nav-justified">
-              <li role="presentation" class="active"><router-link to="/admin/home"><i class="fa fa-dashboard"></i> Dashboard</router-link></li>
-              <li role="presentation"><router-link to="/admin/home/users"><i class="fa fa-users"></i>  Users</router-link></li>
-              <li role="presentation"><router-link to="/admin/home"><i class="glyphicon glyphicon-th-large"></i>  Pages</router-link>
-              </li>
-              <li role="presentation"><router-link to="/admin/home"><i class="fa fa-sticky-note-o"></i>  Blog</router-link></li>
-              <li role="presentation"><router-link to="/admin/home"><i class="fa fa-user"></i>  Profile</router-link></li>
+              <router-link tag="li" to="/admin/home"><a><i class="fa fa-dashboard"></i> Dashboard</a></router-link>
+              <router-link tag="li" to="/admin/home/users"><a><i class="fa fa-users"></i>  Users</a></router-link>
+              <router-link tag="li" to="/admin/home/posts"><a><i class="fa fa-sticky-note-o"></i>  Posts</a></router-link>
+              <router-link tag="li" to="/admin/home/pages"><a><i class="glyphicon glyphicon-th-large"></i>  Pages</a></router-link>
+              <router-link tag="li" to="/admin/home"><a><i class="fa fa-user"></i>  Profile</a></router-link>
         </ul>
         </div>
   </section>

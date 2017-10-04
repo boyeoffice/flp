@@ -7,19 +7,34 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
 	mode: 'history',
+	linkExactActiveClass: 'active',
 	routes: [
 	{
 		path: '/admin/home',
 		component: Dashboard,
 		children: [
-		{path: '/', component: require('./views/Dashboard.vue')},
-		{
-			path: 'users',
-			component: Parent,
-			children: [
-			{path: '/', component: require('./views/users/Index.vue')}
-			]
-		}
+				{path: '/', component: require('./views/Dashboard.vue')},
+				{
+					path: 'users',
+					component: Parent,
+					children: [
+					{path: '/', component: require('./views/users/Index.vue')}
+					]
+				},
+				{
+					path: 'posts', 
+					component: Parent,
+					children: [
+					   {path: '/', component: require('./views/posts/Index.vue')} 
+					    ]
+				},
+				{
+					path: 'pages', 
+					component: Parent,
+					children: [
+					   {path: '/', component: require('./views/pages/Index.vue')} 
+					    ]
+				}
 		]
 	}
 	]

@@ -10,6 +10,7 @@ use Boye\Post;
 use Boye\Visitor;
 use Boye\Category;
 use Boye\Page;
+use Boye\PageView;
 
 class IndexController extends Controller
 {
@@ -21,14 +22,19 @@ class IndexController extends Controller
     {
          $posts = Post::all()->count();
          $pages = Page::all()->count();
-         $visitors = Visitor::all()->count();
-         $categories = Category::all()->count();
-         $data = compact(['posts', 'pages', 'visitors', 'categories']);
+         $postView = Visitor::all()->count();
+         $pageView = PageView::all()->count();
+         $data = compact(['posts', 'pages', 'postView', 'pageView']);
          return response()->json($data);
     }
     public function getPost()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->with('user', 'visits')->get();
         return response()->json($posts);
+    }
+    public function getPage()
+    {
+        $pages = Page::orderBy('created_at', 'desc')->with(['user','pageView'])->get();
+        return response()->json($pages);
     }
 }

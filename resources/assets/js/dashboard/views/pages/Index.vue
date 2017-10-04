@@ -17,7 +17,7 @@
 		   				<tbody>
 		   					<tr v-for="page in model">
 								<td>{{page.title}}</td>
-								<td>0</td>
+								<td>{{page.page_view.length}}</td>
 								<td>{{url}}/health/{{page.slug}}</td>
 								<td>{{page.created_at}}</td>
 								<td>

@@ -29,6 +29,7 @@ Route::group(['prefix' => 'api/admin', 'namespace' => 'Admin', 'middleware' => [
 	Route::get('stastitics', 'IndexController@stastitics');
 	Route::resource('users', 'UserController');
 	Route::get('posts', 'IndexController@getPost');
+	Route::get('pages', 'IndexController@getPage');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

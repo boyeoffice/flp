@@ -8,6 +8,7 @@ use Boye\Visitor;
 use Boye\Page;
 use Boye\User;
 use Auth;
+use Boye\PageView;
 
 class PageController extends Controller
 {
@@ -19,7 +20,7 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $data = Page::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        $data = Page::where('user_id', $user->id)->with('pageView')->orderBy('created_at', 'desc')->get();
         return response()->json($data);
     }
     /**
