@@ -21,9 +21,10 @@ class PostController extends Controller
     public function index(Request $request)
     {   
         $user = $request->user();
-        $posts = Post::where('user_id', $user->id)->with('visits')->orderBy('created_at', 'desc')->get();
-        //$visit = Visitor::where('post_id', '=', $posts->id)->count();
-        return response()->json($posts);
+        return response()
+            ->json([
+                'model' => Post::where('user_id', $user->id)->with('visits')->filterPaginateOrder()
+            ]);
     }
     public function uploadImage(Request $request)
     {

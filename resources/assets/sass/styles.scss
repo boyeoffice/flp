@@ -173,4 +173,12 @@ a:active, a:focus {
     line-height: 90px;
     background: rgba(0,0,0,0.2);
 }
+.pagination-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.pagination-input {
+    width: 45px;
+}

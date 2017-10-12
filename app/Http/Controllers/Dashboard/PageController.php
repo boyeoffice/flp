@@ -20,8 +20,11 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $data = Page::where('user_id', $user->id)->with('pageView')->orderBy('created_at', 'desc')->get();
-        return response()->json($data);
+       // $data = Page::where('user_id', $user->id)->with('pageView')->orderBy('created_at', 'desc')->get();
+       return response()
+            ->json([
+                'model' => Page::where('user_id', $user->id)->with('pageView')->filterPaginateOrder()
+            ]);
     }
     /**
      * Show the form for creating a new resource.

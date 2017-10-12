@@ -14,7 +14,7 @@
    	<div class="row">
    		<div class="col-md-8 col-md-offset-2">
    			<div class="panel panel-default">
-   			<div id="health" class="panel-body"> 
+   			<div id="health" class="panel-body fr-view"> 
    			{!! $key->content !!}
    		</div>
    		</div>

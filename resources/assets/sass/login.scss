@@ -1,0 +1,100 @@
+@import "bootstrap";
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #34495e;
+}
+h2 {
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.auth-layout {
+  height: 100%;
+  margin: 0;
+}
+.auth-layout .nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    -ms-flex-pack: center;
+        justify-content: center;
+    height: 5.625rem;
+    background-color: #333;
+}
+.auth-layout .nav .i-vuestic {
+      height: 1.5rem;
+      width: 100%;
+}
+.auth-layout .main {
+    margin: 0;
+    height: 100%;
+}
+.auth-layout .main .auth-content {
+      padding: 0;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+          align-items: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+      background-color: white;
+}
+.auth-layout .main .auth-wallpaper {
+      background-color: #333;
+      overflow: hidden;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+          align-items: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.auth-layout .main .auth-wallpaper .i-vuestic {
+        z-index: 2;
+        height: 2.625rem;
+        width: 100%;
+}
+.auth-layout .main .auth-wallpaper .oblique {
+        position: absolute;
+        background-color: #282828;
+        left: calc(50% - 27%/2);
+        transform: rotate(15deg);
+        width: 27%;
+        height: 115%;
+}
+@media (max-width: 991px) {
+.auth-layout .main {
+      height: calc(100% - 5.625rem);
+}
+.auth-layout .main .auth-content {
+        -ms-flex-align: start;
+            align-items: flex-start;
+        padding-top: 2.875rem;
+}
+}
+
+
+.login {
+  width: 21.375rem;
+  padding-top: 8rem;
+  padding-bottom: 13.84rem;
+}
+@media (max-width: 991px) {
+.login {
+      width: 100%;
+      padding-right: 2rem;
+      padding-left: 2rem;
+}
+.login .down-container .link {
+        margin-top: 2rem;
+}
+}
+.login h2 {
+    text-align: center;
+}
+.login .down-container {
+    margin-top: 3.125rem;
+}

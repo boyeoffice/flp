@@ -29,12 +29,18 @@ class IndexController extends Controller
     }
     public function getPost()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with('user', 'visits')->get();
-        return response()->json($posts);
+        //$posts = Post::orderBy('created_at', 'desc')->with('user', 'visits')->get();
+        return response()
+            ->json([
+                'model' => Post::with('user', 'visits')->filterPaginateOrder()
+            ]);
     }
     public function getPage()
     {
-        $pages = Page::orderBy('created_at', 'desc')->with(['user','pageView'])->get();
-        return response()->json($pages);
+        //$pages = Page::orderBy('created_at', 'desc')->with(['user','pageView'])->get();
+        return response()
+            ->json([
+                'model' => Page::with('user', 'pageView')->filterPaginateOrder()
+            ]);
     }
 }
