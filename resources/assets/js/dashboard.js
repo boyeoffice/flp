@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./adminlte.js')
 
 window.Vue = require('vue');
 
@@ -34,7 +35,7 @@ require('froala-editor/js/froala_editor.pkgd.min')
 // Import and use Vue Froala lib.
 import VueFroala from 'vue-froala-wysiwyg'
 Vue.use(VueFroala)
-
+ 
 
 var app = new Vue({
   el: '#app',

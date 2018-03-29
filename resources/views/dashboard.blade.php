@@ -15,12 +15,13 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/toastr.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/nprogress.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('dist/AdminLTE.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('dist/skin-red.css')}}">
 	<style>
         [v-cloak] { display: none; }
        </style>
 </head>
-<body>
+<body class="skin-red sidebar-mini">
 <div id="app"></div>
 <script src="{{asset('js/dashboard.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>

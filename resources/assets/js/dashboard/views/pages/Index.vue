@@ -1,6 +1,15 @@
 <template>
 	<section>
-		<section class="container">
+	<section class="content-header">
+		<h1>Dashboard <small>Control panel</small></h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+			<li class="active">Dashboard</li>
+		</ol>
+	</section>
+		<section class="content">
+		<div class="row">
+		<div class="col-xs-12 hidden-xs">
 		   <div class="box box-danger">
 		   	<div class="box-header with-border">
 		   		<div class="box-title">Pages</div>
@@ -21,7 +30,7 @@
 								<td>{{url}}/health/{{page.slug}}</td>
 								<td>{{page.created_at}}</td>
 								<td>
-									<a :href="url + '/health/' + page.slug" class="btn btn-info btn-sm" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>
+									<a :href="url + '/health/' + page.slug" target="_blank" class="btn btn-info btn-sm" title="View"><i class="glyphicon glyphicon-eye-open"></i></a>
 									<router-link :to="'/dashboard/pages/' + page.id + '/edit'" class="btn btn-primary btn-sm" title="Edit"><i class="glyphicon glyphicon-pencil"></i> </router-link>
 									<a href="#" class="btn btn-danger btn-sm" title="Delete"> <i class="glyphicon glyphicon-trash"></i></a>
 								</td>
@@ -46,6 +55,52 @@
                     <button @click="next" class="btn btn-default btn-sm">Next</button>
                   </div>
 				</div>
+		   </div>
+		   </div>
+		   <div class="col-xs-12 visible-xs">
+				<div class="box box-danger">
+					<div class="box-header with-border">
+						<div class="box-tittle">Posts</div>
+						<div class="box-tools pull-right">
+		   		        <router-link to="/dashboard/pages/create" class="btn btn-success btn-sm">Create</router-link></div>
+		   			</div>
+					</div>
+					<div class="box-body">
+						 <!-- mobile view -->
+				          <table class="table table-striped">
+				          	<thead>
+				          		<tr>
+				          			<th>Title</th>
+				          			<th>Views</th>
+				          			<th>Action</th>
+				          		</tr>
+				          	</thead>
+				          	 <tbody>
+				              <tr v-for="page in model.data">
+				                <td>{{page.title}}</td>
+				                <td>{{page.page_view.length}}</td>
+				                <td><a class="btn btn-info btn-sm" target="_blank" :href="'/health/' + page.slug">View</a></td>
+				                <td><router-link class="btn btn-default btn-sm" :to="'/dashboard/pages/' + page.id + '/edit'">Edit</router-link></td>
+				              </tr>
+				            </tbody>
+				          </table>
+				          <div class="panel-footer pagination-footer">
+					        <div class="pagination-item">
+					                <span>Per page: </span>
+					                <select v-model="params.per_page" @change="fetchData">
+					                    <option>10</option>
+					                    <option>25</option>
+					                    <option>50</option>
+					                </select>
+					                </div>
+					                    <div class="pagination-item">
+					                    <button @click="prev" class="btn btn-default btn-sm">Prev</button>
+					                    <button @click="next" class="btn btn-default btn-sm">Next</button>
+					                  </div>
+					        </div>
+					</div>
+				</div>
+			</div>
 		   </div>
 		</section>
 	</section>

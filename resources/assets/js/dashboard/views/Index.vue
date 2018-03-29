@@ -1,59 +1,68 @@
 <template>
-	<section class="container">
+	<section>
+	<section class="content-header">
+		<h1>Dashboard <small>Control panel</small></h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+			<li class="active">Dashboard</li>
+		</ol>
+	</section>
+	<section class="content">
 		<div class="row">
-			<div class="col-md-3">
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<div class="box-title">Posts</div>
-						<div class="box-tool pull-right">
-							<button class="btn btn-success btn-sm">All</button>
-						</div>
+			<div class="col-lg-3 col-xs-6">
+				<div class="small-box bg-aqua">
+					<div class="inner">
+						<h3>{{stastitics.posts}}</h3>
+						<p>Posts</p>
 					</div>
-					<div class="box-body">
-					<span class="text-center"><h2> {{stastitics.posts}}</h2></span>
+					<div class="icon">
+						<i class="fa fa-file-text-o"></i>
 					</div>
+					<a href="#" class="small-box-footer">More info
+					<i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<div class="box-title">Pages</div>
-						<div class="box-tool pull-right">
-							<button class="btn btn-success btn-sm">All</button>
-						</div>
+			<div class="col-lg-3 col-xs-6">
+				<div class="small-box bg-green">
+					<div class="inner">
+						<h3>{{stastitics.pages}}</h3>
+						<p>Pages</p>
 					</div>
-					<div class="box-body">
-					<span class="text-center"><h2>{{stastitics.pages}}</h2></span>
+					<div class="icon">
+						<i class="fa fa-file"></i>
 					</div>
+					<a href="#" class="small-box-footer">More info
+					<i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<div class="box-title">Blog</div>
-						<div class="box-tool pull-right">
-							<button class="btn btn-sm btn-success">All</button>
-						</div>
+			<div class="col-lg-3 col-xs-6">
+				<div class="small-box bg-yellow">
+					<div class="inner">
+						<h3>{{stastitics.pages}}</h3>
+						<p>Users</p>
 					</div>
-					<div class="box-body">
-					<span class="text-center"><h2>{{stastitics.categories}}</h2></span>
+					<div class="icon">
+						<i class="fa fa-user-plus"></i>
 					</div>
+					<a href="#" class="small-box-footer">More info
+					<i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<div class="box-title">Visitors</div>
-						<div class="box-tool pull-right">
-							<button class="btn btn-success btn-sm">All</button>
-						</div>
+			<div class="col-lg-3 col-xs-6">
+				<div class="small-box bg-red">
+					<div class="inner">
+						<h3>{{stastitics.visitors}}</h3>
+						<p>Unique Visitors</p>
 					</div>
-					<div class="box-body">
-					<span class="text-center"><h2>{{stastitics.visitors}}</h2></span>
+					<div class="icon">
+						<i class="fa fa-pie-chart"></i>
 					</div>
+					<a href="#" class="small-box-footer">More info
+					<i class="fa fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>
+	</section>
 	</section>
 </template>
 <script>
